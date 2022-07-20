@@ -1,6 +1,6 @@
 import { IconButton ,useColorMode,useColorModeValue} from "@chakra-ui/react";
-import {sunIcon,MoonIcon, SunIcon} from '@chakra-ui/icons';
-import { Icon } from '@chakra-ui/react';
+import {MoonIcon} from '@chakra-ui/icons';
+
 import { ImSun } from "react-icons/im";
 import  {AnimatePresence,motion} from 'framer-motion';
 

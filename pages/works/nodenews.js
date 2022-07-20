@@ -10,7 +10,7 @@ import {
   import { Title, WorkImage, Meta } from '../../components/work'
   import P from '../../components/paragraph'
   import Layout from '../../components/layout/articale'
-  import { Icon } from '@chakra-ui/react'
+ 
  import { BsGithub } from 'react-icons/bs'
 
   

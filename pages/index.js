@@ -1,12 +1,12 @@
 import NextLink from 'next/link'
-import { Container,Box,Heading, Center ,Link,useColorModeValue,Image,Icon, Button,SimpleGrid, List, ListItem} from "@chakra-ui/react"; 
+import { Container,Box,Heading ,Link,useColorModeValue,Image, Button,SimpleGrid, List, ListItem} from "@chakra-ui/react"; 
 import Section from "../components/section";
 import Paragraph from "../components/paragraph";
 import { ChevronRightIcon  ,ExternalLinkIcon } from '@chakra-ui/icons';
 import { Biosection,BioYear } from '../components/bio';
-import {AiTwotoneHeart} from 'react-icons/ai'
+
 import Layout from '../components/layout/articale';
-import { BsGithub } from 'react-icons/bs'
+
  import {TbBrandDiscord} from 'react-icons/tb'
  import {IoLogoInstagram , IoLogoFacebook , IoLogoNodejs} from 'react-icons/io'
  import {RiTwitterLine} from 'react-icons/ri'

@@ -1,4 +1,4 @@
-import { Container, Box, Heading, SimpleGrid, Divider } from "@chakra-ui/react";
+import { Container, Heading, SimpleGrid, Divider } from "@chakra-ui/react";
 import Section from "../components/section";
 import { WorkGridItem } from "../components/grid-items";
 import thumbCureconncet from "../public/images/cureconnect.png";
@@ -6,8 +6,7 @@ import thumbSolguide from "../public/images/solguid.jpg";
 import thumbNodeNews from "../public/images/nodenews.jpg";
 import thumbCocktail from "../public/images/cocktail.jpg";
 import thumbbd from "../public/images/bd.png";
-import Link from "next/link";
-import Layout from "../components/layout/main";
+
 
 const Works = () => (
 

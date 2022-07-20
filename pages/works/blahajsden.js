@@ -3,15 +3,15 @@ import {
     Badge,
     Link,
     List,
-    ListItem,
-    SimpleGrid,
+    ListItem
+    
     
   } from '@chakra-ui/react'
-  import { ExternalLinkIcon } from '@chakra-ui/icons'
+ 
   import { Title, WorkImage, Meta } from '../../components/work'
   import P from '../../components/paragraph'
   import Layout from '../../components/layout/articale'
-  import { Icon } from '@chakra-ui/react'
+ 
     import { BsGithub } from 'react-icons/bs'
 
 
@@ -20,7 +20,7 @@ import {
     <Layout title="Blahaj's Den">
       <Container>
         <Title>
-        BLÅHAJ's Den <Badge>2021</Badge>
+        BLÅHAJ&apos;s Den <Badge>2021</Badge>
         </Title>
         <P>
         Wikipedia for sharks

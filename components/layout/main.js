@@ -1,7 +1,7 @@
 import { Container,Box } from "@chakra-ui/react";
 import Head from "next/head";
 import Navbar from "../navbar.js";
-import dynamic from 'next/dynamic'
+
  const Layout = ({ children, router }) => {
     return (
         <Box as = "main" pb = { 8 }>
