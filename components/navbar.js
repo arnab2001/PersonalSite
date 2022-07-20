@@ -85,7 +85,7 @@ const Navbar = props => {
                         style={{ gap: 4 }}
                         pl={2}
                     >            
-                    Source
+                    Github
                     </LinkItem>
                     {/* <LinkItem
                         href="https://www.linkedin.com/in/arnab-chatterjee-9a0253187/"
@@ -127,7 +127,7 @@ const Navbar = props => {
                                 </NextLink>
                                 <MenuItem as ={Link} href = "https://drive.google.com/file/d/1xESba6_mfKnFJzzNrlWZ1wpFpw7Blpav/view?usp=sharing">Resume</MenuItem>
                                 <MenuItem as ={Link} href = "https://github.com/arnab20001">Github</MenuItem>
-                                <MenuItem as ={Link} href = "https://www.linkedin.com/in/arnab-chatterjee-9a0253187/">Github</MenuItem>
+                                <MenuItem as ={Link} href = "https://www.linkedin.com/in/arnab-chatterjee-9a0253187/">Linkedin</MenuItem>
                                 
 
                         </MenuList>
