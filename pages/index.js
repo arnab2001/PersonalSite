@@ -61,9 +61,9 @@ const Page = () => {
                     About Me
                 </Heading>
                 <Paragraph>
-                I'm a full-stack Web developer from Kolkata with a passion for exploring the web. I love to create things that make a difference.
+                I&apos;m a full-stack Web developer from Kolkata with a passion for exploring the web. I love to create things that make a difference.
 
-I  have an interest in solving real-life problems with code, I enjoy all the steps from planning and designing, Coding, and all the way to launching it. When I'm not at my desk, I love to play my guitar or do Astrophotography. Currently, I'm pursuing B.tech (graduating in 2024) in Computer Science from Academy of Technology
+I  have an interest in solving real-life problems with code, I enjoy all the steps from planning and designing, Coding, and all the way to launching it. When I&apos;m not at my desk, I love to play my guitar or do Astrophotography. Currently, I&apos;m pursuing B.tech (graduating in 2024) in Computer Science from Academy of Technology
                     .
                 </Paragraph>
             <Box align = "center" my = {4}>
