@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 export const Biosection = styled(Box)`
 
     
-    text-indent: 3.4em;
+    text-indent: 1em;
     padding-left: -3.4em;
     `
 export const BioYear = styled.span`

@@ -1,9 +1,7 @@
 import NextLink from 'next/link'
-<<<<<<< HEAD
-import { Container,Box,Heading ,Link,useColorModeValue,Image, Button,SimpleGrid, List, ListItem} from "@chakra-ui/react"; 
-=======
-import { Container,Box,Heading ,Link,useColorModeValue,Image, Button,SimpleGrid, List, ListItem } from "@chakra-ui/react"; 
->>>>>>> 1edf493ce838accd8da542c9170220f29e44b42c
+import { Container,Box,Heading ,Link,useColorModeValue,Image, Button,SimpleGrid, List, ListItem, Flex} from "@chakra-ui/react"; 
+
+
 import Section from "../components/section";
 import Paragraph from "../components/paragraph";
 import { ChevronRightIcon  ,ExternalLinkIcon } from '@chakra-ui/icons';
@@ -83,15 +81,16 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
                     Work Experience
                 </Heading>
                 <Box align='left'>
-                <Biosection >
-                    <BioYear > May 2021 - November 2021</BioYear>
-                    <Link color = {useColorModeValue('teal.800' , 'gray.200')} href = "https://aotingenium.com/" isExternal>
+                <Flex align="center" justify="space-between" wrap="wrap">
+                <BioYear>
+                     May 2021 - November 2021</BioYear>
+                    <Link color = {useColorModeValue('teal.800' , 'gray.400')} href = "https://aotingenium.com/" isExternal>
                         AOT INGENIUM <ExternalLinkIcon mx='2px' /> 
-                    </Link>
-                    </Biosection>
+                    </Link> </Flex>
+                    
                 <Biosection color='tomato' ><b>• Backend Developer</b></Biosection>
-                <Biosection ><b>• Built back-end with PHP and MYSQL to upload , store and fetch contents</b></Biosection>
-                <Biosection ><b>• Worked with frontend and design team to make sure content delivery is optimized</b></Biosection>
+                <Paragraph >• Built back-end with PHP and MYSQL to upload , store and fetch contents</Paragraph>
+                <Paragraph>• Worked with frontend and design team to make sure content delivery is optimized</Paragraph>
                 </Box>
                 </Section>
                 
@@ -112,9 +111,10 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
                 <Heading as="h3" variant="section-title">
                     Tools and Technologies
                 </Heading>
-                <SimpleGrid minChildWidth='50px' spacing='40px' >
+                <List>
+                <SimpleGrid minChildWidth='50px' spacing='40px' marginLeft={3.5} >
                     
-                    
+                        
                        <AiFillHtml5 size = "40px"/> 
                         <DiCss3 size = "40px"/>
                         <DiJavascript1 size = "40px"/>
@@ -135,6 +135,7 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
 
                 
                 </SimpleGrid>
+                </List>
                     
                 
  
@@ -150,7 +151,7 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
               <Heading as="h3" variant="section-title">
                     Socials
                 </Heading>
-            <List>
+            <List marginLeft = "0.5em">
             <ListItem>
                     <Link href="https://www.dev.to/arnab2001" target="_blank">
                         <Button variant="ghost" leftIcon={<FaDev size={20} color = "grey"/>} >
@@ -194,7 +195,8 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
 
        
        </Layout>
-
+        
     )
     }
 export default Page;
+
