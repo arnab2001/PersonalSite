@@ -4,12 +4,11 @@ import Layout  from '../components/layout/main';
 import Fonts from '../components/fonts';
 import { AnimatePresence } from 'framer-motion';
 import Footer from '../components/footer';
-import Chakra from '../components/chakra'
 
 const Website = ({ Component,pageProps, router }) => {
     return (
-        <Chakra cookies={pageProps.cookies}>
-         <ChakraProvider theme = {theme}>
+        
+         <ChakraProvider theme = {theme} cookies={pageProps.cookies}>
              {/* <ChakraProvider >       */}
           <Fonts />
             <Layout router={router}>
@@ -19,7 +18,7 @@ const Website = ({ Component,pageProps, router }) => {
                 <Footer/>
             </Layout>
         </ChakraProvider>
-        </Chakra>
+
     )
 }
 export default Website;
