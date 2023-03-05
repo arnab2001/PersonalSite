@@ -15,7 +15,7 @@ import {
   import { useColorModeValue } from '@chakra-ui/react'
 
  import { BsGithub } from 'react-icons/bs'
-import Paragraph from '../../components/paragraph'
+
 import {AiOutlineYoutube} from 'react-icons/ai'
 import { MdSettings } from 'react-icons/md'
   

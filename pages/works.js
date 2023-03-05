@@ -37,7 +37,7 @@ const Works = () => (
 
             <Section delay={1}>
                 <WorkGridItem id = "Hype" title = "Hype the hike" thumbnail = {thumbHype} borderRadius =  'md' >
-                Currently, the ticketing system can't help people reflect on special moments from past events. Hence, NFTs have arrived to make tickets more functional and easy to collect for memories.
+                Currently, the ticketing system can&apos;t help people reflect on special moments from past events. Hence, NFTs have arrived to make tickets more functional and easy to collect for memories.
                 </WorkGridItem>
                 </Section>
                 

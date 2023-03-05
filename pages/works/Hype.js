@@ -85,7 +85,7 @@ import {AiOutlineYoutube} from 'react-icons/ai'
           Empowers Community Driven tourism
         <Paragraph>In The landing Page user will be able to see upcoming events, features of our DAPP and contact us section.</Paragraph>
         <Paragraph>To join an event, user need to sign-in using Arcana Auth.</Paragraph>
-<Paragraph>To Join A community , User need to go to the "Join Us" Sections where all the upcoming events are listed.</Paragraph>
+<Paragraph>To Join A community , User need to go to the &#34;Join Us&#34; Sections where all the upcoming events are listed.</Paragraph>
 <Paragraph>User can select their prefered event ,then choose the activity , after that the user needs to connect Metamask Wallet to Mint their NFT which will act as their identity proof for rest of the event.</Paragraph>
 <Paragraph>ThirdWeb SDK is used to mint NFTs.</Paragraph>
 <Paragraph>We Used LightHouse to store the images of NFTs in IPFS network instead of centralized database system.</Paragraph>

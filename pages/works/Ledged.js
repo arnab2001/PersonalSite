@@ -15,7 +15,7 @@ import {
   import { useColorModeValue } from '@chakra-ui/react'
 
  import { BsGithub } from 'react-icons/bs'
-import Paragraph from '../../components/paragraph'
+
 import {AiOutlineYoutube} from 'react-icons/ai'
 import { MdSettings } from 'react-icons/md'
   
@@ -69,7 +69,7 @@ import { MdSettings } from 'react-icons/md'
         css={{ backdropFilter: 'blur(10px)' }}
         
       >
-        Won "Best project built on 5ire" track in Diversion 2k23 hackathon.
+        Won &#34;Best project built on 5ire&#34; track in Diversion 2k23 hackathon.
       </Box>
         
 
