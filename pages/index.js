@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import { Container,Box,Heading ,Link,useColorModeValue,Image, Button,SimpleGrid, List, ListItem, Flex} from "@chakra-ui/react"; 
+import { Container,Box,Heading ,Link,useColorModeValue,Image, Button,SimpleGrid, List, ListItem, Flex, UnorderedList} from "@chakra-ui/react"; 
 
 
 import Section from "../components/section";
@@ -64,7 +64,7 @@ const Page = () => {
                 <Paragraph>
                 I&apos;m a full-stack Web developer from Kolkata with a passion for exploring the web. I love to create things that make a difference.
 
-I  have an interest in solving real-life problems with code, I enjoy all the steps from planning and designing, Coding, and all the way to launching it. When I&apos;m not at my desk, I love to play my guitar or do Astrophotography. Currently, I&apos;m pursuing B.tech (graduating in 2024) in Computer Science from Academy of Technology
+I  have an interest in solving real-life problems with code, I enjoy all the steps from planning and designing, Coding, and all the way to launching it.I am also passionate about Open source and I love attending Hackathons. When I&apos;m not at my desk, I love to play my guitar or do Astrophotography. Currently, I&apos;m pursuing B.tech (graduating in 2024) in Computer Science from Academy of Technology
                     .
                 </Paragraph>
             <Box align = "center" my = {4}>
@@ -99,12 +99,25 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
                         I Love 💖</Heading>
                 
                 <Paragraph>
-                    Photography,{' '}Music, {' '} <Link href='https://www.youtube.com/channel/UCXfIgPuZ9xWylcsWIsyIE2w/videos'  isExternal>Playing guitar
+                    Photography,{' '}Music, Particepating in <Link>Hackathons</Link>, open source, {' '} <Link href='https://www.youtube.com/channel/UCXfIgPuZ9xWylcsWIsyIE2w/videos'  isExternal>Playing guitar
                     </Link> ,
                     
                     Hiking,{' '}
                     <Link href="https://www.facebook.com/photo.php?fbid=2344927942313976&set=pb.100003903798381.-2207520000..&type=3" isExternal >Astrophotography</Link>,{' '}Crypto
                 
+                </Paragraph>
+            </Section>
+
+            <Section delay={1}>
+                <Heading as="h3" variant="section-title">
+                    Achievements🏆
+                </Heading>
+                <Paragraph>
+                    <UnorderedList>
+                        <ListItem> Track winner in MLH Hackathons (Hack the mountains 3.0 , Diversion 2k23 , Hack the League) </ListItem>
+                        <ListItem> Maintainer of multiple open source projects </ListItem>
+                        <ListItem> Tech lead of Students Chapter of AOT CSE </ListItem>
+                    </UnorderedList>
                 </Paragraph>
             </Section>
             <Section delay={1}>
