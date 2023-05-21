@@ -14,7 +14,7 @@ import Layout from '../components/layout/articale';
  import {RiTwitterLine} from 'react-icons/ri'
 import {AiFillHtml5 , } from 'react-icons/ai'
 import {DiCss3,DiJavascript1,DiPhp,DiLinux} from 'react-icons/di'
-import {SiMysql,SiReact,SiNextdotjs,SiExpress,SiMongodb,SiSolidity,SiCplusplus,SiHeroku} from 'react-icons/si'
+import {SiMysql,SiReact,SiNextdotjs,SiExpress,SiMongodb,SiSolidity,SiCplusplus,SiDocker,SiKubernetes,SiAmazonaws,SiTypescript,SiTailwindcss,SiHashnode} from 'react-icons/si'
 import {FaDev} from 'react-icons/fa'
 
 
@@ -43,7 +43,7 @@ const Page = () => {
                         <Heading as="h2" variant="page-title" paddingTop= {2} >
                             Arnab Chatterjee
                         </Heading>
-                    <p>Digital Artisan (Developer /Thinker /Problem Solver)</p>
+                    <div>Digital Artisan (Developer /Thinker /Problem Solver)</div>
                     </Box>
                     <Box flexShrink = {0} mt = {{base:4,md:0}} ml={{md:4}} align= "center" paddingTop= {2}>
                         <Image 
@@ -70,7 +70,7 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
             <Box align = "center" my = {4}>
                 <NextLink href = "/works" >
                     <Button rightIcon={<ChevronRightIcon />} colorScheme="teal" variant="outline">
-                        My Portfolio</Button>
+                        My Projects</Button>
                 </NextLink>
 
             </Box>
@@ -114,9 +114,10 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
                 </Heading>
                 <Paragraph>
                     <UnorderedList>
-                        <ListItem> Track winner in MLH Hackathons (Hack the mountains 3.0 , Diversion 2k23 , Hack the League) </ListItem>
-                        <ListItem> Maintainer of multiple open source projects </ListItem>
-                        <ListItem> Tech lead of Students Chapter of AOT CSE </ListItem>
+                        <ListItem> <b>Track winner</b> in MLH Hackathons (Hack the mountains 3.0 , Diversion 2k23 , Hack the League) </ListItem>
+                        <ListItem> <b>Maintainer</b> of multiple open source projects </ListItem>
+                        <ListItem> <b>Tech lead</b> of Students Chapter of AOT CSE </ListItem>
+                        <ListItem> <b>Mentor</b> @ JWOC2023 and GSSOC2023 </ListItem>
                     </UnorderedList>
                 </Paragraph>
             </Section>
@@ -128,22 +129,38 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
                 <SimpleGrid minChildWidth='50px' spacing='40px' marginLeft={3.5} >
                     
                         
-                       <AiFillHtml5 size = "40px"/> 
+                       <AiFillHtml5 size = "40px" /> 
                         <DiCss3 size = "40px"/>
                         <DiJavascript1 size = "40px"/>
-                        <DiPhp size = "50px"/>
-                        <SiMysql size = "40px"/>
+                        <SiTypescript size = "40px"/>
                         <SiReact size = "40px"/>
                         <SiNextdotjs size = "40px"/>
+                        <SiTailwindcss size = "40px"/>
+
                         <IoLogoNodejs size = "40px"/>
                         <SiExpress size = "40px"/>
+                        <DiPhp size = "50px"/>
+                        <SiMysql size = "40px"/>
+                        
+                        
+                        
+                        
+
                         
                         <SiMongodb size = "40px"/>
                         <SiSolidity size = "40px"/>
                         <SiCplusplus size = "40px"/>
                         
-                        <SiHeroku size = "40px"/>
+                        
                         <DiLinux size = "40px"/>
+                        <SiDocker size = "40px"/>
+
+                        <SiKubernetes size = "40px"/>
+                        <SiAmazonaws size = "40px"/>
+
+
+
+
                         
 
                 
@@ -200,6 +217,13 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
                         </Button>
                     </Link>
                 </ListItem>
+                <ListItem>
+                    <Link href="https://arnab2001.hashnode.dev/" target="_blank">
+                        <Button variant="ghost" leftIcon={<SiHashnode size={20} color = "#0062FF"/>} >
+                        @arnab2001
+                        </Button>
+                    </Link>
+                </ListItem>
                 
 
             </List>
@@ -212,4 +236,3 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
     )
     }
 export default Page;
-

@@ -96,7 +96,7 @@ const Navbar = props => {
                         pl={2}
                     >Linkedin</LinkItem> */}
                     <LinkItem
-                        href="https://drive.google.com/file/d/1xESba6_mfKnFJzzNrlWZ1wpFpw7Blpav/view?usp=sharing"
+                        href="https://drive.google.com/file/d/1b2iW7OdBDkbXD8LfQn1sPwmYzvBeWPSe/view"
                         path={path}
                         display="inline-flex"
                         alignItems="center"
@@ -125,7 +125,7 @@ const Navbar = props => {
                             <NextLink href="/works" passHref>
                                 <MenuItem as ={Link}>Works</MenuItem>
                                 </NextLink>
-                                <MenuItem as ={Link} href = "https://drive.google.com/file/d/1xESba6_mfKnFJzzNrlWZ1wpFpw7Blpav/view?usp=sharing">Resume</MenuItem>
+                                <MenuItem as ={Link} href = "https://drive.google.com/file/d/1b2iW7OdBDkbXD8LfQn1sPwmYzvBeWPSe/view">Resume</MenuItem>
                                 <MenuItem as ={Link} href = "https://github.com/arnab2001">Github</MenuItem>
                                 <MenuItem as ={Link} href = "https://www.linkedin.com/in/arnab-chatterjee-9a0253187/">Linkedin</MenuItem>
                                 
