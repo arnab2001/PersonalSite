@@ -96,7 +96,7 @@ const Navbar = props => {
                         pl={2}
                     >Linkedin</LinkItem> */}
                     <LinkItem
-                        href="https://drive.google.com/file/d/1b2iW7OdBDkbXD8LfQn1sPwmYzvBeWPSe/view"
+                        href="https://drive.google.com/file/d/1CDxsS7VlljBICmlHbbz80mNuUCY6e0hD/view"
                         path={path}
                         display="inline-flex"
                         alignItems="center"

@@ -6,7 +6,7 @@ import Section from "../components/section";
 import Paragraph from "../components/paragraph";
 import { ChevronRightIcon  ,ExternalLinkIcon } from '@chakra-ui/icons';
 import { Biosection,BioYear } from '../components/bio';
-
+import { Divider } from '@chakra-ui/react'
 import Layout from '../components/layout/articale';
 
  import {TbBrandDiscord} from 'react-icons/tb'
@@ -21,7 +21,7 @@ import {FaDev} from 'react-icons/fa'
 const Page = () => {
     return (
         <Layout>
-       <Container>
+       <Container maxW = "container.md">
               {/* <Box borderRadius="lg" bg="#455a64" p={3} align = "center"> */}
               <Box
         borderRadius="lg"
@@ -80,6 +80,26 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
                 <Heading as="h3" variant="section-title">
                     Work Experience
                 </Heading>
+
+
+                <Box align='left'>
+                <Flex align="center" justify="space-between" wrap="wrap">
+                <BioYear>
+                     July 2023 - Current</BioYear>
+                    <Link color = {useColorModeValue('teal.800' , 'gray.400')} href = "https://scrobits.com/" isExternal>
+                    SCROBITS <ExternalLinkIcon mx='2px' /> 
+                    </Link> </Flex>
+                    
+                <Biosection color='tomato' ><b>• Full Stack Developer </b></Biosection>
+                <Paragraph >• Contributed to the development of Full Stack Web Applications using the MERN stack, Next.js, TypeScript, and
+Redux. Contributed to architectural and design decisions for projects and features.</Paragraph>
+                <Paragraph >• Managed version control with Git/Github and containerized applications using Docker. Integrated AWS for
+scalability and performance enhancemen</Paragraph>
+                <Paragraph>• Collaborated in cross-functional teams to align project goals and improve communication.</Paragraph>
+                </Box>
+
+
+                <Divider my={6} />
                 <Box align='left'>
                 <Flex align="center" justify="space-between" wrap="wrap">
                 <BioYear>
@@ -92,6 +112,10 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
                 <Paragraph >• Built back-end with PHP and MYSQL to upload , store and fetch contents</Paragraph>
                 <Paragraph>• Worked with frontend and design team to make sure content delivery is optimized</Paragraph>
                 </Box>
+
+
+
+
                 </Section>
                 
                 <Section delay={0.8}>
@@ -114,7 +138,7 @@ I  have an interest in solving real-life problems with code, I enjoy all the ste
                 </Heading>
                 <Paragraph>
                     <UnorderedList>
-                        <ListItem> <b>Track winner</b> in MLH Hackathons (Hack the mountains 3.0 , Diversion 2k23 , Hack the League) </ListItem>
+                        <ListItem> <b>Track winner</b> in MLH Hackathons (Hack for Bengal 2.0 , Hack the mountains 3.0 , Diversion 2k23 , Hack the League) </ListItem>
                         <ListItem> <b>Maintainer</b> of multiple open source projects </ListItem>
                         <ListItem> <b>Tech lead</b> of Students Chapter of AOT CSE </ListItem>
                         <ListItem> <b>Mentor</b> @ JWOC2023 and GSSOC2023 </ListItem>

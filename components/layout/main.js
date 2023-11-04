@@ -10,7 +10,7 @@ import Navbar from "../navbar.js";
                  <title>Arnab Chatterjee - Homepage</title>
             </Head>
             <Navbar path={router.asPath} />
-            <Container maxW = "container.md" pt = { 14 }>{children}</Container>
+            <Container maxW = "container.xl" pt = { 14 }>{children}</Container>
 
         </Box>
     )
