@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import { Container,Box,Heading ,Link,useColorModeValue,Image, Button,SimpleGrid, List, ListItem, Flex, UnorderedList} from "@chakra-ui/react"; 
+import { Container,Box,Heading ,Link,useColorModeValue,Image, Button,SimpleGrid, List, ListItem, Flex, UnorderedList, Text} from "@chakra-ui/react"; 
 
 
 import Section from "../components/section";
@@ -16,6 +16,9 @@ import {AiFillHtml5 , } from 'react-icons/ai'
 import {DiCss3,DiJavascript1,DiPhp,DiLinux} from 'react-icons/di'
 import {SiMysql,SiReact,SiNextdotjs,SiExpress,SiMongodb,SiSolidity,SiCplusplus,SiDocker,SiKubernetes,SiAmazonaws,SiTypescript,SiTailwindcss,SiHashnode} from 'react-icons/si'
 import {FaDev} from 'react-icons/fa'
+import {SiRedis, SiTerraform, SiJenkins, SiSwift, SiNestjs, SiGooglecloud} from 'react-icons/si'
+import {EmailIcon, ViewIcon} from '@chakra-ui/icons'
+import {SiLinkedin} from 'react-icons/si'
 
 
 const Page = () => {
@@ -59,62 +62,85 @@ const Page = () => {
                 </Box>
             <Section delay={0.3}>
                 <Heading as="h3" variant="section-title">
-                    About Me
+                    Looking for a Developer? 🚀 Let's Connect 📫
                 </Heading>
-                <Paragraph>
-                I&apos;m a full-stack Web developer from Kolkata with a passion for exploring the web. I love to create things that make a difference.
-
-I  have an interest in solving real-life problems with code, I enjoy all the steps from planning and designing, Coding, and all the way to launching it.I am also passionate about Open source and I love attending Hackathons. When I&apos;m not at my desk, I love to play my guitar or do Astrophotography. Currently, I&apos;m pursuing B.tech (graduating in 2024) in Computer Science from Academy of Technology
-                    .
-                </Paragraph>
-            <Box align = "center" my = {4}>
-                <NextLink href = "/works" >
-                    <Button rightIcon={<ChevronRightIcon />} colorScheme="teal" variant="outline">
-                        My Projects</Button>
-                </NextLink>
-
-            </Box>
-            </Section>
+                <Box
+                    borderRadius="lg"
+                    bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
+                    p={4}
+                    mb={6}
+                    css={{ backdropFilter: 'blur(10px)' }}
+                >
+                    <List spacing={3}>
+                        <ListItem>
+                            <Link href="mailto:arnabchat2001@gmail.com" target="_blank">
+                                <Button
+                                    variant="ghost"
+                                    colorScheme="teal"
+                                    leftIcon={<EmailIcon size={20} />}
+                                    width="100%"
+                                    justifyContent="flex-start"
+                                >
+                                    arnabchat2001@gmail.com
+                                </Button>
+                            </Link>
+                        </ListItem>
+                        <ListItem>
+                            <Link href="https://www.linkedin.com/in/arnab-chatterjee-9a0253187/" target="_blank">
+                                <Button
+                                    variant="ghost"
+                                    colorScheme="linkedin"
+                                    leftIcon={<SiLinkedin size={20} color="#0077B5" />}
+                                    width="100%"
+                                    justifyContent="flex-start"
+                                >
+                                    Arnab Chatterjee
+                                </Button>
+                            </Link>
+                        </ListItem>
+                        <ListItem>
+                            <Text fontSize="sm" color={useColorModeValue('gray.600', 'gray.400')} mt={2}>
+                                Available for freelance projects and full-time opportunities
+                            </Text>
+                        </ListItem>
+                    </List>
+                </Box>
+                </Section>
             <Section delay={0.5}>
                 
                 <Heading as="h3" variant="section-title">
                     Work Experience
                 </Heading>
 
-
                 <Box align='left'>
                 <Flex align="center" justify="space-between" wrap="wrap">
-                <BioYear>
-                     July 2023 - Current</BioYear>
-                    <Link color = {useColorModeValue('teal.800' , 'gray.400')} href = "https://scrobits.com/" isExternal>
-                    SCROBITS <ExternalLinkIcon mx='2px' /> 
+                <BioYear>February 2024 - Current</BioYear>
+                    <Link color={useColorModeValue('teal.800', 'gray.400')} href="https://creowis.com/" isExternal>
+                    CREOWIS <ExternalLinkIcon mx='2px' /> 
                     </Link> </Flex>
                     
-                <Biosection color='tomato' ><b>• Full Stack Developer </b></Biosection>
-                <Paragraph >• Contributed to the development of Full Stack Web Applications using the MERN stack, Next.js, TypeScript, and
-Redux. Contributed to architectural and design decisions for projects and features.</Paragraph>
-                <Paragraph >• Managed version control with Git/Github and containerized applications using Docker. Integrated AWS for
-scalability and performance enhancemen</Paragraph>
-                <Paragraph>• Collaborated in cross-functional teams to align project goals and improve communication.</Paragraph>
+                <Biosection color='tomato'><b>• Backend and Cloud Engineer</b></Biosection>
+                <Paragraph>• Developed scalable backend services with NestJS, PostgreSQL, MongoDB, Redis, etc. for high-traffic applications</Paragraph>
+                <Paragraph>• Designed and automated Jenkins CI/CD pipelines for deploying applications to AWS, executing unit and integration tests</Paragraph>
+                <Paragraph>• Deployed applications and maintained infrastructure on AWS (EC2, ECS, ECR, SES, S3)</Paragraph>
+                <Paragraph>• Designed and deployed multi-tenant data pipeline using dbt, AWS Batch, and Step Functions with Snowflake</Paragraph>
+                <Paragraph>• Led initiatives to enhance deployment strategies, achieving 60% reduction in deployment times</Paragraph>
+                <Paragraph>• Mentored junior developers, fostering best practices and reducing onboarding time</Paragraph>
                 </Box>
-
 
                 <Divider my={6} />
                 <Box align='left'>
                 <Flex align="center" justify="space-between" wrap="wrap">
-                <BioYear>
-                     May 2021 - November 2021</BioYear>
-                    <Link color = {useColorModeValue('teal.800' , 'gray.400')} href = "https://aotingenium.com/" isExternal>
-                        AOT INGENIUM <ExternalLinkIcon mx='2px' /> 
+                <BioYear>June 2023 - February 2024</BioYear>
+                    <Link color={useColorModeValue('teal.800', 'gray.400')} href="https://scrobits.com/" isExternal>
+                        SCROBITS <ExternalLinkIcon mx='2px' /> 
                     </Link> </Flex>
                     
-                <Biosection color='tomato' ><b>• Backend Developer</b></Biosection>
-                <Paragraph >• Built back-end with PHP and MYSQL to upload , store and fetch contents</Paragraph>
-                <Paragraph>• Worked with frontend and design team to make sure content delivery is optimized</Paragraph>
+                <Biosection color='tomato'><b>• Full Stack Developer Intern</b></Biosection>
+                <Paragraph>• Contributed to the development of full-stack applications using MERN stack, Next.js, TypeScript, and Redux</Paragraph>
+                <Paragraph>• Designed sophisticated frontend architecture for handling large data volumes, improving efficiency</Paragraph>
+                <Paragraph>• Implemented best practices in version control with Git/Github and containerized applications using Docker</Paragraph>
                 </Box>
-
-
-
 
                 </Section>
                 
@@ -123,11 +149,11 @@ scalability and performance enhancemen</Paragraph>
                         I Love 💖</Heading>
                 
                 <Paragraph>
-                    Photography,{' '}Music, Particepating in <Link>Hackathons</Link>, open source, {' '} <Link href='https://www.youtube.com/channel/UCXfIgPuZ9xWylcsWIsyIE2w/videos'  isExternal>Playing guitar
+                    Photography,{' '}Music, Particepating in <Link>Hackathons</Link>,  {' '} <Link href='https://www.youtube.com/channel/UCXfIgPuZ9xWylcsWIsyIE2w/videos'  isExternal>Playing guitar
                     </Link> ,
                     
                     Hiking,{' '}
-                    <Link href="https://www.facebook.com/photo.php?fbid=2344927942313976&set=pb.100003903798381.-2207520000..&type=3" isExternal >Astrophotography</Link>,{' '}Crypto
+                    <Link href="https://www.facebook.com/photo.php?fbid=2344927942313976&set=pb.100003903798381.-2207520000..&type=3" isExternal >Astrophotography</Link>
                 
                 </Paragraph>
             </Section>
@@ -145,62 +171,7 @@ scalability and performance enhancemen</Paragraph>
                     </UnorderedList>
                 </Paragraph>
             </Section>
-            <Section delay={1}>
-                <Heading as="h3" variant="section-title">
-                    Tools and Technologies
-                </Heading>
-                <List>
-                <SimpleGrid minChildWidth='50px' spacing='40px' marginLeft={3.5} >
-                    
-                        
-                       <AiFillHtml5 size = "40px" /> 
-                        <DiCss3 size = "40px"/>
-                        <DiJavascript1 size = "40px"/>
-                        <SiTypescript size = "40px"/>
-                        <SiReact size = "40px"/>
-                        <SiNextdotjs size = "40px"/>
-                        <SiTailwindcss size = "40px"/>
-
-                        <IoLogoNodejs size = "40px"/>
-                        <SiExpress size = "40px"/>
-                        <DiPhp size = "50px"/>
-                        <SiMysql size = "40px"/>
-                        
-                        
-                        
-                        
-
-                        
-                        <SiMongodb size = "40px"/>
-                        <SiSolidity size = "40px"/>
-                        <SiCplusplus size = "40px"/>
-                        
-                        
-                        <DiLinux size = "40px"/>
-                        <SiDocker size = "40px"/>
-
-                        <SiKubernetes size = "40px"/>
-                        <SiAmazonaws size = "40px"/>
-
-
-
-
-                        
-
-                
-                </SimpleGrid>
-                </List>
-                    
-                
- 
-            </Section>
-
-
-
-
-
-
-
+            
             <Section delay={1.2}>
               <Heading as="h3" variant="section-title">
                     Socials

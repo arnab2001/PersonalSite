@@ -15,7 +15,7 @@ import {
     IconButton,
     useColorModeValue
 } from '@chakra-ui/react'
-import { HamburgerIcon } from '@chakra-ui/icons'
+import { HamburgerIcon, EmailIcon } from '@chakra-ui/icons'
 import ThemeToggleButton from './theme-toggle-button'
 
 
@@ -75,6 +75,22 @@ const Navbar = props => {
                     </LinkItem> */}
                     <LinkItem href="/works" path = {path} >
                         Works
+                    </LinkItem>
+                    <LinkItem
+                        href="/hire-me"
+                        path={path}
+                        style={{
+                            background: useColorModeValue('teal.500', 'teal.200'),
+                            color: useColorModeValue('white', 'gray.800'),
+                            padding: '0.5rem 1rem',
+                            borderRadius: '0.375rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem'
+                        }}
+                    >
+                        <EmailIcon />
+                        Hire Me
                     </LinkItem>
                     <LinkItem
                         target="_blank"
