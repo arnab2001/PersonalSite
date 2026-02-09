@@ -35,7 +35,7 @@ interface HomeClientProps {
 
 export default function HomeClient({ featuredPosts }: HomeClientProps) {
   return (
-    <Container maxW="container.md">
+    <Container maxW="container.md" pt={{ base: 6, md: 4 }}>
       <Box
         borderRadius="lg"
         mb={6}
