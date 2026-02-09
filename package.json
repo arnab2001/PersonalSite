@@ -5,10 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev -H 0.0.0.0",
+    "dev": "next dev",
     "build": "next build",
+    "start": "next start",
     "prettier": "prettier --write",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync-content": "tsx scripts/sync-content.ts",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [],
   "author": "Arnab chatterjee @github.com/arnabchat2001",
@@ -17,14 +20,28 @@
     "@chakra-ui/icons": "^2.0.4",
     "@chakra-ui/react": "^2.2.3",
     "@emotion/styled": "^11.9.3",
+    "@supabase/supabase-js": "^2.95.3",
+    "dotenv": "^17.2.4",
     "eslint": "^8.19.0",
     "eslint-config-next": "^12.2.2",
     "framer-motion": "^6.4.3",
     "git-cz": "^4.9.0",
-    "next": "^12.2.2",
+    "gray-matter": "^4.0.3",
+    "next": "^14.2.35",
     "prettier": "^2.7.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.4.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^4.4.0",
+    "reading-time": "^1.5.0",
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-html": "^16.0.1",
+    "rss-parser": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.1",
+    "@types/react": "^19.2.13",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

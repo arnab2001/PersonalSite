@@ -27,11 +27,10 @@ const LogoBox = styled.span`
 const Logo = () => {
     const footPrintImg = `/images/footprint${useColorModeValue("", "-dark")}.png`;
     return (
-        <Link href="/">
-        <a>
-            <LogoBox >
+        <Link href="/" style={{ textDecoration: 'none' }}>
+            <LogoBox>
                 <Image src={footPrintImg} width={20} height={20}  alt="Arnab Chatterjee" />
-            <Text 
+            <Text
                 color = {useColorModeValue("gray.800", "whiteAlpha.800")}
                 fontFamily = 'M PLUS Rounded 1c'
                 fontWeight="bold"
@@ -39,7 +38,6 @@ const Logo = () => {
                 Arnab Chatterjee
                 </Text>
             </LogoBox>
-        </a>
         </Link>
     )
 }

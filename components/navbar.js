@@ -6,7 +6,7 @@ import {
     Heading,
     Link,
     Stack,
-    
+
     Flex,
     Menu,
     MenuItem,
@@ -19,61 +19,61 @@ import { HamburgerIcon, EmailIcon } from '@chakra-ui/icons'
 import ThemeToggleButton from './theme-toggle-button'
 
 
-const LinkItem = ({ href,path, target ,children , ...props}) => {
+const LinkItem = ({ href, path, target, children, ...props }) => {
     const active = path === href;
     const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900');
-    return(
-        <NextLink href= {href} passHref scroll={false}  >
+    return (
+        <NextLink href={href} passHref scroll={false}  >
             <Link
                 p={2}
-                bg = {active ? 'glassTeal' : undefined}
-                color = {active ? '#202023' : inactiveColor}
+                bg={active ? 'glassTeal' : undefined}
+                color={active ? '#202023' : inactiveColor}
                 target={target}
-                {...props}               
-                >
-                    {children}
-                </Link>
+                {...props}
+            >
+                {children}
+            </Link>
         </NextLink>
     )
 }
 const Navbar = props => {
-    const {path} = props
-    return(
+    const { path } = props
+    return (
         <Box
-        position="fixed"
-        as="nav"
-        w="100%"
-        bg={useColorModeValue('#ffffff40', '#20202380')}
-        css={{ backdropFilter: 'blur(10px)' }}
-        zIndex={2}
-        {...props}
-      >
-        
-            <Container 
-              display='flex'
-              p = {2} 
-              maxW = "container.md"
-              wrap="wrap" 
-              align="center"
-              justfy="space-between"
-              >
+            position="fixed"
+            as="nav"
+            w="100%"
+            bg={useColorModeValue('#ffffff40', '#20202380')}
+            css={{ backdropFilter: 'blur(20px)' }}
+            zIndex={2}
+            {...props}
+        >
+
+            <Container
+                display='flex'
+                p={2}
+                maxW="container.md"
+                wrap="wrap"
+                align="center"
+                justfy="space-between"
+            >
                 <Flex align='center' mr={5}>
-                    <Heading as="h1" size = 'lg' letterSpacing ={'tighter'} >
+                    <Heading as="h1" size="lg" letterSpacing={'tighter'}>
                         <Logo />
-                        </Heading>
+                    </Heading>
                 </Flex>
-                <Stack 
-                direction={{base: 'column', md: 'row'}}
-                display={{base: 'none', md: 'flex'}}
-                width={{base: 'full', md: 'auto'}}
-                alignItems = 'center'
-                flexgrow={1}
-                mt={{base: '4', nmd: '0'}}
+                <Stack
+                    direction={{ base: 'column', md: 'row' }}
+                    display={{ base: 'none', md: 'flex' }}
+                    width={{ base: 'full', md: 'auto' }}
+                    alignItems='center'
+                    flexgrow={1}
+                    mt={{ base: '4', nmd: '0' }}
                 >
                     {/* <LinkItem href="/" path = {path} >
                         About
                     </LinkItem> */}
-                    <LinkItem href="/works" path = {path} >
+                    <LinkItem href="/works" path={path} >
                         Works
                     </LinkItem>
                     <LinkItem
@@ -100,8 +100,8 @@ const Navbar = props => {
                         alignItems="center"
                         style={{ gap: 4 }}
                         pl={2}
-                    >            
-                    Github
+                    >
+                        Github
                     </LinkItem>
                     {/* <LinkItem
                         href="https://www.linkedin.com/in/arnab-chatterjee-9a0253187/"
@@ -112,47 +112,48 @@ const Navbar = props => {
                         pl={2}
                     >Linkedin</LinkItem> */}
                     <LinkItem
-                        href="https://drive.google.com/file/d/1CDxsS7VlljBICmlHbbz80mNuUCY6e0hD/view"
+                        href="https://drive.google.com/file/d/1reOfGlzZCaOiLxM-l_38487uerkVsDzp/view?usp=sharing"
                         path={path}
                         display="inline-flex"
                         alignItems="center"
                         style={{ gap: 4 }}
                         pl={2}
-                        
-                        >
+
+                    >
                         Resume
-                        </LinkItem>
-                    
+                    </LinkItem>
+
                 </Stack>
                 <Box flex={1} align='right'>
                     <ThemeToggleButton />
-                    <Box ml={2} display={{base: 'inline-block', md: 'none'}}></Box>
+                    <Box ml={2} display={{ base: 'inline-block', md: 'none' }}></Box>
                     <Menu>
-                        <MenuButton 
-                            as = {IconButton} 
-                            icon = {<HamburgerIcon/>}
-                            variant = 'outline'
+                        <MenuButton
+                            as={IconButton}
+                            icon={<HamburgerIcon />}
+                            variant='outline'
                             aria-label="Options"
                         />
                         <MenuList>
                             <NextLink href="/" passHref>
-                                <MenuItem as ={Link}>About</MenuItem>
-                                </NextLink>
+                                <MenuItem as={Link}>About</MenuItem>
+                            </NextLink>
                             <NextLink href="/works" passHref>
-                                <MenuItem as ={Link}>Works</MenuItem>
-                                </NextLink>
-                                <MenuItem as ={Link} href = "https://drive.google.com/file/d/1b2iW7OdBDkbXD8LfQn1sPwmYzvBeWPSe/view">Resume</MenuItem>
-                                <MenuItem as ={Link} href = "https://github.com/arnab2001">Github</MenuItem>
-                                <MenuItem as ={Link} href = "https://www.linkedin.com/in/arnab-chatterjee-9a0253187/">Linkedin</MenuItem>
-                                
+                                <MenuItem as={Link}>Works</MenuItem>
+                            </NextLink>
+                            <MenuItem as={Link} href="https://drive.google.com/file/d/1b2iW7OdBDkbXD8LfQn1sPwmYzvBeWPSe/view">Resume</MenuItem>
+                            <MenuItem as={Link} href="https://github.com/arnab2001">Github</MenuItem>
+                            <MenuItem as={Link} href="https://www.linkedin.com/in/arnab-chatterjee-9a0253187/">Linkedin</MenuItem>
+
 
                         </MenuList>
                     </Menu>
                 </Box>
             </Container>
-            </Box>
-        
+        </Box>
 
-    )}
 
-    export default Navbar;
+    )
+}
+
+export default Navbar;
