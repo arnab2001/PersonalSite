@@ -13,7 +13,7 @@ const projects = [
     name: 'KitOps',
     stack: 'Go · CNCF Sandbox',
     url: 'https://github.com/kitops-ml/kitops',
-    description: 'Contributed Hugging Face model and dataset support and remote Kitfile generation without a local clone.'
+    description: 'Two changes I contributed to the KitOps CLI:'
   },
   {
     name: 'Boxy',
@@ -23,9 +23,9 @@ const projects = [
   },
   {
     name: 'OptiSchema Slim',
-    stack: 'PostgreSQL · HypoPG · Python',
+    stack: 'FastAPI · Ollama · PostgreSQL · HypoPG · Docker',
     url: 'https://github.com/arnab2001/Optischema-Slim',
-    description: 'Built a local-first PostgreSQL tuning tool that uses hypothetical indexes to compare query plans before you create real indexes.'
+    description: <>Local-first, zero-egress AI PostgreSQL performance tool with a Collect–Analyze–Simulate pipeline. Enriches <code>pg_stat_statements</code> with live schema/bloat stats for local Ollama or BYOK LLM analysis and verifies <code>EXPLAIN</code> cost drops via transient HypoPG virtual indexes in a single ~390MB container.</>
   }
 ]
 
@@ -61,19 +61,36 @@ export default function Home() {
         <SandboxFigure />
       </section>
 
-      <section className="home-section" aria-labelledby="experience-title">
+      <section id="work" className="home-section" aria-labelledby="experience-title">
         <div className="section-heading"><h2 id="experience-title">Work experience</h2><a href="/resume.pdf" data-event="resume_click">Full resume</a></div>
         <ol className="experience">
           <li>
             <p className="mono">Apr 2026 – Present</p>
             <h3>Infraspec <span>Platform Engineer</span></h3>
-            <p>I traced a slow Kata VM teardown to a CRI-O mount issue. I also design microVM orchestration for Firecracker and Cloud Hypervisor.</p>
-            <div className="teardown"><span>Sandbox teardown</span><s>~35 min</s><span aria-hidden="true">→</span><strong>13 sec</strong></div>
+            <ul>
+              <li>Deployed Kubernetes Agent Sandbox with Kata on on-premises amd64 and arm64 nodes. Networkless, tokenless VMs start in 0.07 s from the warm pool for PR <code>kustomize</code> builds.</li>
+              <li>Traced an undocumented CRI-O private overlay mount bug to mount propagation. Using <code>mount --make-shared</code> cut teardown from ~35 min to 13 s.</li>
+              <li>Designed Firecracker and Cloud Hypervisor orchestration with a gRPC push API and a sub-second boot target.</li>
+              <li>Built a CI/CD and Flux diagnosis agent with deterministic attribution, LLM explanations, and OTel/SigNoz tracing. It attributed all 72 live fault-injection cases correctly.</li>
+              <li>Benchmarked Grafana LGTM, ClickHouse, and SigNoz at up to ~50k RPS with a custom k6 OTLP generator. Validated ClickHouse + Keeper failover and S3 tiering.</li>
+              <li>Cut Kafka metrics from 6,450 to ~190 series per broker and deployed backtested SigNoz alerts for LLM failures.</li>
+            </ul>
           </li>
           <li>
             <p className="mono">Feb 2024 – Apr 2026</p>
             <h3>CreoWis <span>Backend &amp; Cloud Engineer</span></h3>
-            <p>Led a four-person cloud orchestration team, operated production EKS with Argo CD, and designed a compiler that turns infrastructure diagrams into Terraform.</p>
+            <ul>
+              <li>Led four engineers building a cloud orchestration platform. Operated production EKS with Argo CD across two environments, cutting incidents by 45%.</li>
+              <li>Built a diagram-to-Terraform compiler for reusable IaC modules. Standardized Jenkins test gates and cut deployment time by 60%.</li>
+              <li>Built FastAPI ingestion services with asyncpg and PostgreSQL (99.9% processing reliability), and multi-tenant NestJS auth with RBAC, enterprise IdPs, PostgreSQL, Redis, and MongoDB.</li>
+            </ul>
+          </li>
+          <li>
+            <p className="mono">Jun 2023 – Feb 2024</p>
+            <h3>Scrobits Technology <span>Full Stack Developer Intern</span></h3>
+            <ul>
+              <li>Built features in Next.js, TypeScript, Redux, and Node.js. Improved render times on large datasets by 40% and standardized local development with Docker.</li>
+            </ul>
           </li>
         </ol>
       </section>
@@ -100,8 +117,8 @@ export default function Home() {
               <p>{project.description}</p>
               {project.name === 'KitOps' && (
                 <div className="pr-links mono">
-                  <a href={`${project.url}/pull/1007`} data-event="project_click">PR #1007</a>
-                  <a href={`${project.url}/pull/1074`} data-event="project_click">PR #1074</a>
+                  <a href={`${project.url}/pull/1007`} data-event="project_click">Support Hugging Face datasets</a>
+                  <a href={`${project.url}/pull/1074`} data-event="project_click">Run kit init against a remote repository</a>
                 </div>
               )}
             </li>

@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <header className="site-header">
             <a className="wordmark" href="/">{site.name}</a>
             <nav aria-label="Main navigation">
-              <a href="/#projects">Work</a>
+              <a href="/#work">Work</a>
               <a href="/blog">Writing</a>
               <a href="/resume.pdf" data-event="resume_click">Resume</a>
               <ThemeToggle />

@@ -30,3 +30,7 @@ func main() {
 ```
 
 Start with [the writing archive](/blog) to see where published articles appear.
+
+## Before and after
+
+> Sandbox teardown: ~~35 min~~ → **13 s**

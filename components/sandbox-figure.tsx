@@ -2,13 +2,31 @@
 
 import { useState } from 'react'
 
-/** An exploded view of the build, its guest VM and the Kubernetes node. */
+const systems = [
+  {
+    name: 'CI sandbox',
+    layers: [['PR build'], ['Kata VM'], ['K8s node']],
+    symbol: 'm0 0 -7 7 7 7m13-14 7 7-7 7M9-2 4 16'
+  },
+  {
+    name: 'MicroVM orchestration',
+    layers: [['gRPC push API'], ['Stateless', 'node agent'], ['Firecracker /', 'Cloud Hypervisor VMs']],
+    symbol: 'M-6 0h24M6 0v7M-6 14V7h24v7M6 7v7'
+  },
+  {
+    name: 'ClickHouse tiering',
+    layers: [['Hot (NVMe)'], ['Warm'], ['S3 Cold / Archive']],
+    symbol: 'M-5 0h23v4H-5zM-5 8h23v4H-5z'
+  }
+]
+
 export function SandboxFigure() {
-  const [assembled, setAssembled] = useState(false)
+  const [selected, setSelected] = useState(0)
+  const system = systems[selected]
   return (
-    <figure className="sandbox-figure" data-assembled={assembled}>
-      <svg className="sandbox-drawing" viewBox="0 0 360 244" role="img" aria-labelledby="sandbox-title">
-        <title id="sandbox-title">A pull-request build inside a Kata VM on a Kubernetes node</title>
+    <figure className="sandbox-figure">
+      <svg key={system.name} className="sandbox-drawing" viewBox="25 0 407 244" role="img" aria-labelledby="sandbox-title">
+        <title id="sandbox-title">{system.name}: {system.layers.map(lines => lines.join(' ')).join(' → ')}</title>
         <defs>
           <pattern id="etch" width="5" height="5" patternUnits="userSpaceOnUse">
             <path d="M-1 1L1 -1M0 5L5 0M4 6L6 4" fill="none" stroke="currentColor" opacity=".55" strokeWidth=".7" />
@@ -37,18 +55,26 @@ export function SandboxFigure() {
             <path d="m111 69 50 25v10l-50-25Z" className="plate-front"/>
             <path d="m161 94 50-25v10l-50 25Z" fill="url(#etch)"/>
             <g transform="matrix(.94 .46 -.94 .46 157 60)" strokeWidth="2.4">
-              <path d="m0 0 -7 7 7 7m13-14 7 7-7 7M9-2 4 16"/>
+              <path d={system.symbol}/>
             </g>
           </g>
           <g className="leaders"><path d="M206 64l19-10h34m-35 79 20-10h15m-29 60 14-7h15"/></g>
         </g>
         <g className="figure-labels">
-          <text x="266" y="58">PR build</text>
-          <text x="266" y="127">Kata VM</text>
-          <text x="266" y="180">K8s node</text>
+          {system.layers.map((lines, index) => (
+            <text key={lines[0]} x="266" y={[58, 127, 180][index]}>
+              {lines.map((line, i) => <tspan key={line} x="266" dy={i ? 15 : 0}>{line}</tspan>)}
+            </text>
+          ))}
         </g>
       </svg>
-      <figcaption><span>CI sandbox</span><button type="button" onClick={() => setAssembled(!assembled)}>{assembled ? 'Separate layers' : 'Stack layers'}</button></figcaption>
+      <figcaption>
+        <label htmlFor="hero-system">System</label>
+        <select id="hero-system" value={selected} onChange={event => setSelected(Number(event.target.value))}>
+          {systems.map((item, index) => <option key={item.name} value={index}>{item.name}</option>)}
+        </select>
+      </figcaption>
+      {selected === 2 && <p className="tier-note">Moving partitions to S3 had no observed query-latency impact in the benchmark.</p>}
     </figure>
   )
 }
