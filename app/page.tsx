@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SandboxFigure } from '@/components/sandbox-figure'
 import { ContactLinks } from '@/components/site-links'
 import { JsonLd } from '@/components/json-ld'
 import { PostList } from '@/components/post-list'
@@ -50,11 +51,14 @@ export default function Home() {
         ]
       }} />
       <section className="intro" aria-labelledby="intro-title">
-        <p className="hello">Hello from India <span>·</span> UTC+05:30</p>
-        <h1 id="intro-title">{site.name}</h1>
-        <p className="byline">Platform engineer at Infraspec</p>
-        <p className="intro-bio">I build sandboxes for CI jobs and AI agents on Kubernetes. Lately I’ve been tracing a slow VM teardown through CRI-O and measuring how ClickHouse recovers when a node goes down.</p>
-        <div id="contact"><ContactLinks /></div>
+        <div className="intro-copy">
+          <p className="hello">India <span>·</span> UTC+05:30</p>
+          <h1 id="intro-title">{site.name}</h1>
+          <p className="byline">Platform engineer at Infraspec</p>
+          <p className="intro-bio">I run untrusted builds in disposable VMs and measure what happens when infrastructure fails. Most days that means Kubernetes, Linux, and a lot of traces.</p>
+          <div id="contact"><ContactLinks /></div>
+        </div>
+        <SandboxFigure />
       </section>
 
       <section className="home-section" aria-labelledby="experience-title">
@@ -63,7 +67,8 @@ export default function Home() {
           <li>
             <p className="mono">Apr 2026 – Present</p>
             <h3>Infraspec <span>Platform Engineer</span></h3>
-            <p>I moved pull-request builds into disposable Kata VMs. Fixing a CRI-O mount issue cut teardown from about 35 minutes to 13 seconds. I also designed microVM orchestration for Firecracker and Cloud Hypervisor.</p>
+            <p>I traced a slow Kata VM teardown to a CRI-O mount issue. I also design microVM orchestration for Firecracker and Cloud Hypervisor.</p>
+            <div className="teardown"><span>Sandbox teardown</span><s>~35 min</s><span aria-hidden="true">→</span><strong>13 sec</strong></div>
           </li>
           <li>
             <p className="mono">Feb 2024 – Apr 2026</p>
