@@ -1,123 +1,63 @@
-import { Metadata, Viewport } from 'next'
-import Script from 'next/script'
-import { M_PLUS_Rounded_1c, Poppins, Raleway } from 'next/font/google'
-import { Providers } from '@/components/layout/providers'
-import { LayoutWrapper } from '@/components/layout/layout-wrapper'
+import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
+import '@fontsource-variable/geist'
+import '@fontsource-variable/geist-mono'
+import { Analytics } from '@/components/analytics'
+import { ContactLinks } from '@/components/site-links'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { site } from '@/lib/site'
+import './globals.css'
 
-const GA_MEASUREMENT_ID = 'G-SBK1WGQF16'
-
-const mPlusRounded = M_PLUS_Rounded_1c({
-  subsets: ['latin'],
-  weight: ['300', '700'],
-  variable: '--font-mplus-rounded',
-  adjustFontFallback: false
-})
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-poppins'
-})
-
-const raleway = Raleway({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-raleway'
-})
+const title = `${site.name} · ${site.role}`
+const preview = process.env.VERCEL_ENV === 'preview'
+const image = '/opengraph-image'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://portfoliosite-beta.vercel.app'),
-  title: {
-    default: 'Arnab Chatterjee - Platform & Cloud Engineer',
-    template: '%s - Arnab Chatterjee'
-  },
-  description:
-    'Platform & Cloud Engineer at Creowis. Building scalable backend systems with AWS, Kubernetes, and modern cloud infrastructure. Explore my projects and technical blog.',
-  keywords: [
-    'Platform Engineer',
-    'Cloud Engineer',
-    'AWS',
-    'Kubernetes',
-    'Docker',
-    'Terraform',
-    'FastAPI',
-    'NestJS',
-    'PostgreSQL',
-    'DevOps',
-    'Backend Development',
-    'Arnab Chatterjee'
-  ],
-  authors: [{ name: 'Arnab Chatterjee', url: 'https://github.com/arnab2001' }],
-  creator: 'Arnab Chatterjee',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: '/',
-    siteName: 'Arnab Chatterjee Portfolio',
-    title: 'Arnab Chatterjee - Platform & Cloud Engineer',
-    description:
-      'Platform & Cloud Engineer specializing in AWS, Kubernetes, and modern cloud infrastructure. Building scalable backend systems.',
-    images: [
-      {
-        url: '/og/home.png',
-        width: 1200,
-        height: 630,
-        alt: 'Arnab Chatterjee - Platform & Cloud Engineer'
-      }
-    ]
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Arnab Chatterjee - Platform & Cloud Engineer',
-    description: 'Building scalable cloud infrastructure and backend systems',
-    creator: '@arnabchat',
-    images: ['/og/home.png']
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1
-    }
-  }
+  metadataBase: new URL(site.url),
+  title: { default: title, template: `%s · ${site.name}` },
+  description: site.description,
+  authors: [{ name: site.name, url: site.url }],
+  alternates: { types: { 'application/rss+xml': '/rss.xml' } },
+  openGraph: { type: 'website', title, description: site.description, siteName: site.name, images: [image] },
+  twitter: { card: 'summary_large_image', images: [image] },
+  robots: { index: !preview, follow: !preview },
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION }
 }
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f0e7db' },
-    { media: '(prefers-color-scheme: dark)', color: '#202023' }
-  ]
-}
+const initTheme = `try { if (localStorage.getItem('portfolio-theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch {}`
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const currentYear = new Date().getFullYear()
-
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${mPlusRounded.variable} ${poppins.variable} ${raleway.variable}`}>
-        {/* Google Analytics */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
-
-        <Providers>
-          <LayoutWrapper currentYear={currentYear}>{children}</LayoutWrapper>
-        </Providers>
+      <head>
+        {/* Set the saved theme before first paint. */}
+        <script dangerouslySetInnerHTML={{ __html: initTheme }} />
+      </head>
+      <body>
+        <a className="skip-link" href="#main">Skip to content</a>
+        <div className="shell">
+          <header className="site-header">
+            <a className="wordmark" href="/" aria-label={site.name}>
+              <span className="brand-mark" aria-hidden="true">ac<span>.</span></span>
+              <span>Arnab Chatterjee</span>
+            </a>
+            <nav aria-label="Main navigation">
+              <a href="/#projects">Work</a>
+              <a href="/blog">Writing</a>
+              <a href="/resume.pdf" data-event="resume_click">Resume</a>
+              <ThemeToggle />
+            </nav>
+          </header>
+          <main id="main">{children}</main>
+          <footer className="site-footer">
+            <span className="footer-name">Arnab Chatterjee</span>
+            <div className="footer-links">
+              <ContactLinks />
+              <a href="/rss.xml">RSS</a>
+            </div>
+          </footer>
+        </div>
+        <Analytics />
       </body>
     </html>
   )

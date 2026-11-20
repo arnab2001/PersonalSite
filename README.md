@@ -1,49 +1,52 @@
-### hey, i'm arnab 👋
+# Arnab Chatterjee's portfolio
 
-platform engineer who likes building stuff with containers, databases, and clouds. currently hacking on postgres optimization tools and container runtimes.
+A Next.js portfolio and Markdown blog about platform engineering, infrastructure, and open source.
 
-[portfolio](https://your-site.com) · [blog](https://arnab2001.hashnode.dev/) · [twitter](https://twitter.com/030arnab) · [linkedin](https://www.linkedin.com/in/arnab-chatterjee-9a0253187/)
+## Run locally
 
+Use Node.js 22 or newer.
+
+```sh
+npm ci
+npm run dev
+```
+
+Open http://localhost:3000. The development server shows draft posts and marks them as drafts.
+
+## Publish a post
+
+Add a plain Markdown file such as `content/blog/2026-11-kata-crio-mount.md`:
+
+```markdown
+---
+title: "How our CI agent ended up building PRs inside throwaway VMs"
+date: "2026-11-20"
+summary: "Running untrusted kustomize builds in Kata Containers on on-prem Kubernetes."
+tags: ["kubernetes", "kata-containers", "linux"]
+draft: true
 ---
 
-### 🛠️ stuff i'm building
+## First section
 
-**[optischema-slim](https://github.com/arnab2001/Optischema-Slim)** – ai-powered postgres tuning that runs locally, uses hypopg to test indexes before touching prod
+Write the article here.
+```
 
-**[boxy](https://github.com/arnab2001/boxy)** – minimal container runtime, talks directly to containerd (no docker daemon needed)
+Use a lowercase kebab-case filename. The optional `YYYY-MM-` prefix is stripped from the URL, so this example becomes `/blog/kata-crio-mount`. Keep the slug stable after publishing. Quote the date and use a YAML boolean for `draft`. Start body headings at level two. Add a fence language like `go` or `yaml` for syntax highlighting.
 
-**[git-repo-parser](https://github.com/arnab2001/git-repo-parser)** – converts github repos to llm-friendly formats (json/toon/reposcript)
+Put an image at `public/blog/kata-crio-mount/arch.png` and refer to it as `![Architecture diagram](/blog/kata-crio-mount/arch.png)`. A draft file and its assets are visible to anyone who can read this public repository. The production site hides draft articles, and the feed and sitemap always exclude them. Files under `public/` are served directly, so keep private assets out of that folder.
 
-**[codecompass.ai](https://github.com/arnab2001/code-compass)** – chat with your codebase using vector embeddings
+Set `draft: false` when the post is ready. Commit and push or merge it to the Vercel production branch. Vercel rebuilds the site from the checkout and publishes the article with the archive, RSS feed, and sitemap. `master` is the GitHub default branch. Check Vercel's production branch setting for the deployment target.
 
----
+```sh
+npm test
+npm run lint
+npm run build
+npm run type-check
+```
 
-### 💭 what i'm into
+## Site settings
 
-building with: `aws` `kubernetes` `fastapi` `nestjs` `postgresql` `go` `typescript`
-
-currently learning: kubernetes deep dive, cloud architecture patterns
-
-working on: optimizing postgres at scale, making containers simpler
-
----
-
-### ✍️ recent posts
-
-<!-- BLOGPOSTS:START -->
-- [codecompass.ai: instant project insights](https://arnab2001.hashnode.dev/codecompassai-empower-your-team-with-instant-project-insights)
-- [dependency injection in nestjs](https://arnab2001.hashnode.dev/stop-juggling-dependencies-let-nestjs-and-typescript-inject-some-order)
-- [event-driven architecture explained](https://arnab2001.hashnode.dev/beyond-request-response-understanding-the-principles-and-benefits-of-eda)
-- [socket.io realtime chat](https://arnab2001.hashnode.dev/building-real-time-chat-functionality-with-socketio-in-nodejs)
-<!-- BLOGPOSTS:END -->
-
----
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=arnab2001&show_icons=true&theme=vue&hide=issues" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=arnab2001&theme=vue" />
-</p>
-
----
-
-<sub>down to collaborate on backend/infra projects · find me on [twitter](https://twitter.com/030arnab) or [buy me a coffee](https://www.buymeacoffee.com/arna2001) ☕</sub>
+- `NEXT_PUBLIC_SITE_URL` is the canonical production origin. The default is `https://portfoliosite-beta.vercel.app`.
+- `NEXT_PUBLIC_GA_ID` defaults to the existing GA4 property `G-SBK1WGQF16`. Use `off` to disable it. The tag runs only on the canonical production origin. Use GA4 Realtime or DebugView to verify page views and tracked clicks after deployment.
+- Set `GOOGLE_SITE_VERIFICATION` in Vercel if Search Console requires HTML tag verification. Submit `/sitemap.xml` in Search Console.
+- Replace `public/resume.pdf` with the latest public copy of the resume.

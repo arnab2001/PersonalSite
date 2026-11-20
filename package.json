@@ -1,47 +1,47 @@
 {
-  "name": "client",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "arnab-portfolio",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prettier": "prettier --write",
-    "lint": "next lint",
-    "sync-content": "tsx scripts/sync-content.ts",
-    "type-check": "tsc --noEmit"
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts"
   },
-  "keywords": [],
-  "author": "Arnab chatterjee @github.com/arnabchat2001",
-  "license": "MIT",
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.4",
-    "@chakra-ui/react": "^2.2.3",
-    "@emotion/styled": "^11.9.3",
-    "@supabase/supabase-js": "^2.95.3",
-    "dotenv": "^17.2.4",
-    "eslint": "^8.19.0",
-    "eslint-config-next": "^12.2.2",
-    "framer-motion": "^6.4.3",
-    "git-cz": "^4.9.0",
+    "@fontsource-variable/geist": "^5.2.0",
+    "@fontsource-variable/geist-mono": "^5.2.0",
+    "@shikijs/rehype": "^4.0.0",
     "gray-matter": "^4.0.3",
-    "next": "^14.2.35",
-    "prettier": "^2.7.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^4.4.0",
+    "next": "^16.4.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "reading-time": "^1.5.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-sanitize": "^6.0.0",
+    "rehype-slug": "^6.0.0",
+    "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
-    "remark-html": "^16.0.1",
-    "rss-parser": "^3.13.0"
+    "remark-rehype": "^11.1.2"
   },
   "devDependencies": {
-    "@types/node": "^25.2.1",
-    "@types/react": "^19.2.13",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.4.6",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "gray-matter": {
+      "js-yaml": "^3.15.2"
+    }
   }
 }
