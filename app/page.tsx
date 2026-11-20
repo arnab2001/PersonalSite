@@ -24,7 +24,7 @@ const projects = [
   {
     name: 'OptiSchema Slim',
     stack: 'FastAPI · Ollama · PostgreSQL · HypoPG · Docker',
-    url: 'https://github.com/arnab2001/Optischema-Slim',
+    url: 'https://arnab2001.github.io/Optischema-Slim/landing',
     description: <>Local-first, zero-egress AI PostgreSQL performance tool with a Collect–Analyze–Simulate pipeline. Enriches <code>pg_stat_statements</code> with live schema/bloat stats for local Ollama or BYOK LLM analysis and verifies <code>EXPLAIN</code> cost drops via transient HypoPG virtual indexes in a single ~390MB container.</>
   }
 ]
@@ -68,28 +68,28 @@ export default function Home() {
             <p className="mono">Apr 2026 – Present</p>
             <h3>Infraspec <span>Platform Engineer</span></h3>
             <ul>
-              <li>Deployed Kubernetes Agent Sandbox with Kata on on-premises amd64 and arm64 nodes. Networkless, tokenless VMs start in 0.07 s from the warm pool for PR <code>kustomize</code> builds.</li>
-              <li>Traced an undocumented CRI-O private overlay mount bug to mount propagation. Using <code>mount --make-shared</code> cut teardown from ~35 min to 13 s.</li>
-              <li>Designed Firecracker and Cloud Hypervisor orchestration with a gRPC push API and a sub-second boot target.</li>
-              <li>Built a CI/CD and Flux diagnosis agent with deterministic attribution, LLM explanations, and OTel/SigNoz tracing. It attributed all 72 live fault-injection cases correctly.</li>
-              <li>Benchmarked Grafana LGTM, ClickHouse, and SigNoz at up to ~50k RPS with a custom k6 OTLP generator. Validated ClickHouse + Keeper failover and S3 tiering.</li>
-              <li>Cut Kafka metrics from 6,450 to ~190 series per broker and deployed backtested SigNoz alerts for LLM failures.</li>
+              <li>Deployed Kubernetes Agent Sandbox with Kata on on-premises amd64 and arm64 nodes. Networkless, tokenless VMs start in <strong>0.07 s from the warm pool</strong> for PR <code>kustomize</code> builds.</li>
+              <li>Traced an undocumented CRI-O private overlay mount bug to mount propagation. Using <code>mount --make-shared</code> cut teardown from <strong>~35 min to 13 s</strong>.</li>
+              <li>Designed <strong>Firecracker and Cloud Hypervisor orchestration</strong> with a gRPC push API and a sub-second boot target.</li>
+              <li>Built a CI/CD and Flux diagnosis agent with deterministic attribution, LLM explanations, and OTel/SigNoz tracing. It attributed <strong>all 72 live fault-injection cases</strong> correctly.</li>
+              <li>Benchmarked Grafana LGTM, ClickHouse, and SigNoz at up to <strong>~50k RPS</strong> with a custom k6 OTLP generator. Validated ClickHouse + Keeper failover and S3 tiering.</li>
+              <li>Cut Kafka metrics from <strong>6,450 to ~190 series</strong> per broker and deployed backtested SigNoz alerts for LLM failures.</li>
             </ul>
           </li>
           <li>
             <p className="mono">Feb 2024 – Apr 2026</p>
             <h3>CreoWis <span>Backend &amp; Cloud Engineer</span></h3>
             <ul>
-              <li>Led four engineers building a cloud orchestration platform. Operated production EKS with Argo CD across two environments, cutting incidents by 45%.</li>
-              <li>Built a diagram-to-Terraform compiler for reusable IaC modules. Standardized Jenkins test gates and cut deployment time by 60%.</li>
-              <li>Built FastAPI ingestion services with asyncpg and PostgreSQL (99.9% processing reliability), and multi-tenant NestJS auth with RBAC, enterprise IdPs, PostgreSQL, Redis, and MongoDB.</li>
+              <li>Led four engineers building a cloud orchestration platform. Operated production EKS with Argo CD across two environments, <strong>cutting incidents by 45%</strong>.</li>
+              <li>Built a diagram-to-Terraform compiler for reusable IaC modules. Standardized Jenkins test gates and <strong>cut deployment time by 60%</strong>.</li>
+              <li>Built FastAPI ingestion services with asyncpg and PostgreSQL (<strong>99.9% processing reliability</strong>), and multi-tenant NestJS auth with RBAC, enterprise IdPs, PostgreSQL, Redis, and MongoDB.</li>
             </ul>
           </li>
           <li>
             <p className="mono">Jun 2023 – Feb 2024</p>
             <h3>Scrobits Technology <span>Full Stack Developer Intern</span></h3>
             <ul>
-              <li>Built features in Next.js, TypeScript, Redux, and Node.js. Improved render times on large datasets by 40% and standardized local development with Docker.</li>
+              <li>Built features in Next.js, TypeScript, Redux, and Node.js. Improved render times on large datasets by <strong>40%</strong> and standardized local development with Docker.</li>
             </ul>
           </li>
         </ol>

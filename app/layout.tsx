@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import '@fontsource/poppins/latin-400.css'
+import '@fontsource/poppins/latin-500.css'
 import '@fontsource/poppins/latin-600.css'
 import '@fontsource/m-plus-rounded-1c/latin-700.css'
 import '@fontsource-variable/geist-mono'

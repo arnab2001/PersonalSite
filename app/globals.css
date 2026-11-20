@@ -196,6 +196,7 @@ h1 > span { color: var(--accent); }
 .experience { list-style: none; padding: 0; }
 .experience > li + li { margin-top: 1.65rem; }
 .experience ul { margin-top: .65rem; padding-left: 1.1rem; color: var(--muted); }
+.experience ul strong { color: var(--title); font-weight: 500; }
 .experience ul li + li { margin-top: .45rem; }
 .experience li::marker { color: var(--meta); }
 .experience h3 { display: flex; flex-wrap: wrap; gap: .35rem .65rem; align-items: baseline; margin-top: .35rem; font-size: 1.18rem; }
