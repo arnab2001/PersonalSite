@@ -37,10 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a className="skip-link" href="#main">Skip to content</a>
         <div className="shell">
           <header className="site-header">
-            <a className="wordmark" href="/" aria-label={site.name}>
-              <span className="brand-mark" aria-hidden="true">ac<span>.</span></span>
-              <span>Arnab Chatterjee</span>
-            </a>
+            <a className="wordmark" href="/">{site.name}</a>
             <nav aria-label="Main navigation">
               <a href="/#projects">Work</a>
               <a href="/blog">Writing</a>

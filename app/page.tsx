@@ -1,6 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
-import portrait from '@/public/images/arnab.jpg'
 import { ContactLinks } from '@/components/site-links'
 import { JsonLd } from '@/components/json-ld'
 import { PostList } from '@/components/post-list'
@@ -52,20 +50,21 @@ export default function Home() {
         ]
       }} />
       <section className="intro" aria-labelledby="intro-title">
-        <div className="intro-copy">
-          <div className="intro-title">
-            <p className="intro-role mono">{site.role}</p>
-            <h1 id="intro-title">Arnab Chatterjee<span>.</span></h1>
-          </div>
+        <div>
+          <h1 id="intro-title">{site.name}<span>.</span></h1>
           <p className="intro-bio">I build infrastructure for running untrusted workloads and understanding what systems do under load. My work spans Kubernetes, microVMs, Linux networking, and observability.</p>
           <div id="contact"><ContactLinks /></div>
         </div>
-        <figure className="portrait">
-          <div className="portrait-image">
-            <Image src={portrait} alt="Arnab Chatterjee outdoors" sizes="(max-width: 520px) 96px, 176px" preload />
-          </div>
-          <figcaption className="mono">India <span aria-hidden="true">/</span> IST</figcaption>
-        </figure>
+        <dl className="system-info mono" aria-label="System info">
+          <dt>role</dt>
+          <dd>{site.role}</dd>
+          <dt>focus</dt>
+          <dd>MicroVM isolation and observability</dd>
+          <dt>location</dt>
+          <dd>India / UTC+05:30</dd>
+          <dt>stack</dt>
+          <dd>K8s, Kata, Firecracker, Go, OTel</dd>
+        </dl>
       </section>
 
       <section className="home-section" aria-labelledby="writing-title">
