@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: { type: 'website', title, description: site.description, siteName: site.name, images: [image] },
   twitter: { card: 'summary_large_image', images: [image] },
   robots: { index: !preview, follow: !preview },
-  verification: { google: process.env.GOOGLE_SITE_VERIFICATION || 'MOH4xrqNctQ5fhs9zeh4ZrEyb5Xqr1l99XppxcIrjk8' }
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION || 'Mz1DGeXmhWyZ2ycU3_bKSSId-3PDOYJNx0w_nv0TGsU' }
 }
 
 const initTheme = `try { if (localStorage.getItem('portfolio-theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch {}`
