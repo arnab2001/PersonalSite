@@ -6,18 +6,13 @@ tags: ["kubernetes", "kata-containers", "linux", "cgroups"]
 draft: false
 ---
 
-**TL;DR**
+I expected the pod to see 128 MiB of memory. That was the limit I gave it.
 
-- I locked a Kubernetes pod down with the usual hardening fields and ran a probe inside it. It still saw the node's kernel, all 8 CPUs, the node's 69 GiB of RAM and the node's disks.
-- Namespaces, cgroups and seccomp limit what a process can do. Every syscall the pod is still allowed to make runs in the host's kernel.
-- The same probe inside a Kata Containers VM, on the same node, saw 1 vCPU, about 950 MiB and a kernel of its own.
-- The VM costs about 9.5 s to start cold (0.07 s from a warm pool) and 250m CPU plus 320 MiB per pod. For code or input you didn't write, I think that's worth paying.
+Instead, `/proc/meminfo` reported about 69 GiB. The pod also saw eight CPUs, the node's kernel version and its block devices. I had removed its capabilities, made the root filesystem read-only and applied a deny-all network policy. The pod still shared the node's kernel.
 
-## Why I tested this
+I was working on a CI service that runs `kustomize build` on pull-request content. The input comes from whoever opens the PR. With load restrictions disabled, a kustomization can read files outside its own directory. Remote bases use the network, and `--enable-helm` runs the `helm` binary.
 
-I was building a CI service that runs `kustomize build` on pull-request content. Whoever opens the PR writes that input. Kustomize has more reach than it looks: with load restrictions off, as GitOps tools run it, a kustomization can read files outside its own folder. Remote bases make it fetch from the network, and `--enable-helm` makes it run the `helm` binary.
-
-Before reaching for VMs, I wanted to know how far an ordinary pod gets you. So I wrote a small probe and ran it twice on the same bare-metal node: once in a locked-down pod, once inside a Kata VM.
+I wanted to know what an ordinary pod exposed before I put a VM around the build. I ran the same probe in two places on one bare-metal node: a hardened pod and a Kata Containers VM. The difference showed up in the first few lines of output.
 
 ## The hardened pod
 
@@ -54,7 +49,7 @@ spec:
   policyTypes: [Ingress, Egress]
 ```
 
-It isn't everything you could do. User namespaces (`hostUsers: false`), an AppArmor or SELinux profile and a custom seccomp profile would each go further. None of them changes which kernel the pod runs on, which is the subject of this post.
+User namespaces (`hostUsers: false`), an AppArmor or SELinux profile, and a custom seccomp profile can restrict the pod further. I kept those out of this comparison. They do not give the pod a separate kernel.
 
 ## The probe
 
@@ -89,7 +84,7 @@ The full version also tries a raw socket, DNS, the API server, the kubelet's por
 
 The last two rows match, and the hardening did its job. The hardened pod's effective capability set was `0000000000000000`. Neither pod could mount anything or reach the network.
 
-The first four rows are where the two pods differ.
+The first four rows made me stop and look more closely. The hardened pod had a restricted view of processes and files, but its kernel still described the node.
 
 ![The hardened pod's allowed syscalls go straight into the host kernel. The Kata pod's syscalls go to a guest kernel inside a VM, and the host only sees QEMU and virtiofsd.](/blog/hardened-pod-kernel/01-same-kernel-vs-own-kernel.png)
 
@@ -103,7 +98,7 @@ A container is an ordinary Linux process wrapped in namespaces. The PID namespac
 
 ### /proc reports the machine, whatever the cgroup says
 
-The pod had a 128 MiB memory limit, and `/proc/meminfo` reported 69 GiB. Both are true. The cgroup will OOM-kill the container's processes at 128 MiB, while `/proc/meminfo` describes the whole machine.
+The pod had a 128 MiB memory limit, and `/proc/meminfo` reported 69 GiB. Both are true. The cgroup enforces the 128 MiB limit. If the cgroup cannot reclaim enough memory, it can trigger an OOM kill. Meanwhile, `/proc/meminfo` describes the machine.
 
 CPU works the same way. This pod had no CPU limit, so 8 is a fair answer here. Add `limits.cpu: 500m` and `os.cpu_count()` still says 8; only the cgroup's `cpu.max` changes.
 
@@ -125,11 +120,11 @@ It can't open them. The device cgroup only allows the standard set of devices (`
 
 ### Seccomp leaves about 300 syscalls open
 
-`RuntimeDefault` is the container runtime's default seccomp profile. Docker's version, which most runtimes follow closely, blocks around 44 of the 300-plus syscalls and allows the rest. Some of the allowed ones are gated on capabilities, so dropping `ALL` closes a few more. That still leaves a couple of hundred syscalls, each running in the host kernel with the pod's arguments.
+`RuntimeDefault` is the container runtime's default seccomp profile. Docker's documented default profile blocks around 44 syscalls. The exact profile depends on the container runtime and its version. Some of the allowed ones are gated on capabilities, so dropping `ALL` closes a few more. That still leaves a couple of hundred syscalls, each running in the host kernel with the pod's arguments.
 
-That's why [Dirty Pipe (CVE-2022-0847)](https://ubuntu.com/security/CVE-2022-0847) was bad for containers. It let an unprivileged process overwrite the page cache of files it could only read, using `pipe()` and `splice()`. Every default profile allows both. A non-root user, zero capabilities and a read-only root filesystem did nothing against it.
+That's why [Dirty Pipe (CVE-2022-0847)](https://ubuntu.com/security/CVE-2022-0847) was bad for containers. It let an unprivileged process overwrite the page cache of files it could only read, using `pipe()` and `splice()`. The example matters because ordinary application syscalls can expose kernel bugs. A non-root user, zero capabilities and a read-only root filesystem did not prevent Dirty Pipe on vulnerable kernels.
 
-So the hardened pod is only as safe as the least-tested syscall it can still make. For my own code, I'm fine with that. For PR content from strangers, I wasn't.
+This changed how I thought about the CI service. The pod restrictions reduced what a build could do, but the remaining syscalls still reached the node's kernel. I was less comfortable with that boundary for PR content from strangers.
 
 ## What changes inside the Kata VM
 
@@ -141,9 +136,9 @@ What the probe saw:
 - **CPU and memory:** 1 vCPU and about 950 MiB, the VM's virtual hardware.
 - **Disks:** `pmem0` is Kata's guest OS image, attached as an emulated NVDIMM. `ram0` to `ram15` are the guest kernel's RAM disks; the `brd` driver creates 16 by default. None of the node's disks appear.
 
-A kernel exploit inside this pod gets root in the VM. That VM holds the kata-agent, this pod's files (shared in through virtiofs), any secrets mounted into the pod and the pod's own network access. It doesn't hold the node or the other pods.
+A successful guest-kernel exploit can compromise the VM. That VM holds the kata-agent, this pod's files (shared in through virtiofs), any secrets mounted into the pod and the pod's own network access. It doesn't hold the node or the other pods.
 
-Reaching the node takes a second bug, in QEMU (Kata also supports Cloud Hypervisor and Firecracker), in virtiofsd or in KVM. QEMU and virtiofsd are host processes that make their own syscalls, so they're attack surface too. That interface is much smaller than the syscall table, but it's still there.
+Reaching the node takes a second bug, in QEMU (Kata also supports Cloud Hypervisor and Firecracker), in virtiofsd or in KVM. QEMU and virtiofsd are host processes that make their own syscalls, so they're attack surface too. The VM boundary adds isolation, but QEMU, virtiofsd and KVM remain part of the attack surface.
 
 ## What the VM costs
 
@@ -166,15 +161,15 @@ My first run reported DNS, the API server and the internet as reachable from the
 
 The policy was fine. Kubernetes leaves the timing of NetworkPolicy enforcement to the network plugin. In my cluster, the CNI applied it a moment after the pod started, and the probe ran in that gap.
 
-For a probe, the fix is a short sleep. For untrusted code, that gap is a window to send data out before the policy lands. Don't start the workload until egress is confirmed blocked, for example with an init container that tries an outbound connection and fails the pod if it succeeds.
+For the probe, I waited before running the network checks. That made the result useful, but a sleep does not close the startup gap for untrusted code. Enforcement before workload startup depends on the CNI and its configuration. I would check that behavior for the cluster before relying on the policy.
 
-## When a hardened pod is enough
+## Where I landed
 
-- **Your own code, trusted input:** a hardened pod is the right tool. It limits what a bug in your code can do.
-- **Code or input from outside**, such as PR content, user scripts or model-generated code: the host kernel is in the blast radius. Put a VM boundary (Kata, Firecracker) or gVisor between it and the node.
-- **Either way:** size heaps and thread pools from the cgroup files, not from `/proc`.
+I still use hardened pods for workloads where I trust the code and its input. The restrictions matter. In this test, they stopped the mount and raw socket attempts, and the network policy blocked the connections once it took effect.
 
-To check your own setup, run the probe in your most locked-down pod and compare `uname -r` with the node's.
+For the CI builds, the input comes from a PR. I chose to put a VM around the build as well. The cold start was expensive on this node, but the warm pool brought the observed start time down to 0.07 s.
+
+The result that stayed with me was that 128 MiB limit beside a 69 GiB `MemTotal`. The limit worked. It was the view from inside the pod that surprised me.
 
 ## Links
 
